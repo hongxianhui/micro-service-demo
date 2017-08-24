@@ -1,0 +1,90 @@
+<html>
+<head>
+<title>Micro Service Demo Page</title>
+<script type="text/javascript" src="webjars/jquery/2.1.1/jquery.js"></script>
+<style type="text/css">
+button{
+	width:100px;
+	padding:4px;
+}
+.mask {
+	position: absolute;
+	top: 0px;
+	filter: alpha(opacity = 60);
+	background-color: #777;
+	z-index: 1002;
+	left: 0px;
+	opacity: 0.5;
+	-moz-opacity: 0.5; ##
+	display: none;
+}
+
+.mask div {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	width: 50%;
+	text-align: center;
+	height: 16px;
+	margin: auto;
+	color: white;
+	height: 50%;
+}
+</style>
+<script type="text/javascript">
+	function showMask() {
+		$("#result").text("");
+		$("#mask").css("height", $(document).height());
+		$("#mask").css("width", $(document).width());
+		$("#mask").show();
+	}
+	function hideMask() {
+		$("#mask").hide();
+	}
+	$(document).ready(function() {
+		$("#hystrix").click(function() {
+			window.open("hystrix/monitor?stream=http%3A%2F%2Flocalhost%3A8010%2Fhystrix.stream");
+		})
+		$("#eureka").click(function() {
+			window.open("http://localhost:8761/");
+		})
+		$("#testConfig").click(function() {
+			showMask();
+			$.get("showEnvironment", function(result) {
+				hideMask();
+				$("#result").text(result);
+			})
+		})
+		$("#testFeign").click(function() {
+			showMask();
+			$.get("showTime", function(result) {
+				hideMask();
+				$("#result").text(result);
+			})
+		})
+		$("#testRefreshConfig").click(function() {
+			showMask();
+			$.post("refresh", {}, function(result) {
+				hideMask();
+				$("#result").text(JSON.stringify(result));
+			})
+		})
+	})
+</script>
+</head>
+<body>
+	<div id="mask" class="mask">
+		<div>Loading...</div>
+	</div>
+	<h2>Tools:</h2>
+	<button id="eureka">show eureka</button>
+	<button id="hystrix">show hystrix</button>
+	<h2>Test Cases:</h2>
+	<button id="testConfig">get config</button>
+	<button id="testRefreshConfig">refresh config</button>
+	<button id="testFeign">call feignclient</button>
+	<h2>Server Response:</h2>
+	<div id="result" style="border: 1px solid gray; height: 100px; padding: 4px"></div>
+</body>
+</html>
