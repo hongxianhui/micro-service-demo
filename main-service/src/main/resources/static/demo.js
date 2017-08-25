@@ -1,17 +1,17 @@
 	function showMask() {
 		$("#result").text("");
-		$("#mask").css("height", $(document).height());
-		$("#mask").css("width", $(document).width());
-		$("#mask").show();
+		$(".mask").css("height", $(document).height());
+		$(".mask").css("width", $(document).width());
+		$(".mask").show();
 	}
 	function hideMask() {
-		$("#mask").hide();
+		$(".mask").hide();
 	}
 	$(document).ready(function() {
 		$("#hystrix").click(function() {
 			window.open("/hystrix/monitor?stream=http%3A%2F%2Flocalhost%3A8010%2Fhystrix.stream");
 		})
-		$("#sleuth").click(function() {
+		$("#zipkin").click(function() {
 			window.open("http://localhost:8070/");
 		})		
 		$("#eureka").click(function() {
