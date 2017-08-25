@@ -1,4 +1,4 @@
-package com.accenture.odc.microservice.demo;
+package com.accenture.odc.microservice.demo.zuulfilter;
 
 import javax.servlet.http.HttpServletRequest;
 
