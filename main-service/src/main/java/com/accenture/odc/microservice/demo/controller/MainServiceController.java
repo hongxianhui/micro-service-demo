@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.accenture.odc.microservice.demo.service.ServiceOneService;
 
@@ -18,6 +19,9 @@ public class MainServiceController {
 	@Autowired
 	private ServiceOneService serviceOneService;
 
+	@Autowired
+	private RestTemplate restTemplate;
+
 	@RequestMapping("/showEnvironment")
 	public String showEnvironment() {
 		return demoVar;
@@ -28,4 +32,8 @@ public class MainServiceController {
 		return serviceOneService.getTime();
 	}
 
+	@RequestMapping("/showTimeByRest")
+	public String showServiceOneTimeByRest() {
+		return restTemplate.getForObject("http://localhost:8020/getTime", String.class);
+	}
 }

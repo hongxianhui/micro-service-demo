@@ -26,7 +26,7 @@
 		})
 		$("#testFeign").click(function() {
 			showMask();
-			$.get("showTime", function(result) {
+			$.get("showTimeByRest", function(result) {
 				hideMask();
 				$("#result").text(result);
 			})
