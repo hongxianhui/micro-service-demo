@@ -9,10 +9,21 @@ eureka:
 zuul:
   #overwrite default sensitive headers settings, by set only this headers as sensitive, so other headers such as Authorization can trasform normally.
   sensitive-headers: Cookie,Set-Cookie
+  ignoredServices: '*'
   routes:
-    service-one:
-      path: /getTime
-      serviceId: service-one
     main-service:
       path: /**
-      serviceId: main-service
+    hystrix-dashboard:
+      path: /hystrix/**
+      stripPrefix: false
+    hystrix-dashboard-webjars:
+      path: /webjars/d3js/**
+      serviceId: hystrix-dashboard
+      stripPrefix: false
+    hystrix-dashboard-proxystream:
+      path: /proxy.stream
+      serviceId: hystrix-dashboard
+      stripPrefix: false
+    service-one:
+      path: /getTime
+      
