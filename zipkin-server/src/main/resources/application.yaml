@@ -1,6 +1,6 @@
 spring:
   application:
-    name: sleuth-server
+    name: zipkin-server
   cloud:
     config:
       profile: dev
