@@ -1,10 +1,10 @@
-# micro-service-demo
+r# micro-service-demo
 Shared a mico-service demo for firends.
 
 last updated by 8/25/2017 
 
 This demo includes features as below:
-1. a eureka server which can register or discove micro-services dynamically.
+1. a eureka server which can register or discover micro-services dynamically.
 2. a distribted config server holds all the configuration of other micro-services.
 3. a zuul server which can be the proxy supports dynamic routes.
 4. a feignclient call sample with test case.
@@ -21,7 +21,9 @@ demo project start up orders:
 3. other services (can startup synchronously)
 
 when all projects startup successfuly, simple visit url address as below:
+
 http://localhost:8080/
+
 the username and password is user/user
 
 enjoy!
