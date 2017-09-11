@@ -36,4 +36,9 @@ public class MainServiceController {
 	public String showServiceOneTimeByRest() {
 		return restTemplate.getForObject("http://localhost:8020/getTime", String.class);
 	}
+	
+	@RequestMapping("/helloworld")
+	public String sayHelloWorld() {
+		return "Hello World";
+	}
 }
